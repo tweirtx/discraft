@@ -18,6 +18,9 @@ public class Listener implements EventListener {
                 Message message = ((MessageReceivedEvent) event).getMessage().getChannel().sendMessage("This message will be where the bot puts the latest embeds when you put the ID in the config.").complete();
                 ((MessageReceivedEvent) event).getMessage().getChannel().sendMessage(message.getId()+" is the ID to put in the config").complete();
             }
+            if (((MessageReceivedEvent) event).getMessage().getContentStripped().equals("discraftupdate")) {
+                MinecraftInterface.updateEmbed();
+            }
         }
     }
 }
