@@ -11,6 +11,7 @@ public class Listener implements EventListener {
     {
         if (event instanceof ReadyEvent) {
             System.out.println("Discord OK!");
+            // MinecraftInterface.updateEmbed();
         }
         if (event instanceof MessageReceivedEvent) {
             if (((MessageReceivedEvent) event).getMessage().getContentStripped().equals("discrafthere"))

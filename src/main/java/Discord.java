@@ -19,7 +19,7 @@ public class Discord {
     private static void generateConfig() {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("config.yml"));
-            writer.write("token: put the Discord token here \nmessageid: put the message id the bot gives you here \ncustomip: auto");
+            writer.write("token: 'put the Discord token here' \nmessageid: 'put the message id the bot gives you here'\ncustomip: 'auto'\nguildid: 'put the guild ID here'\nchannelid: 'put the channel ID here'");
             writer.close();
             System.out.println("Generated config.yml, please fill it out.");
             System.exit(1);
@@ -32,7 +32,6 @@ public class Discord {
     public static void main(String[] args)
     {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-        // Note: It is important to register your ReadyListener before building
         try {
             Config config = mapper.readValue(new File("config.yml"), Config.class);
             String token = config.token;
@@ -62,15 +61,14 @@ public class Discord {
     }
 
     static void update(InfoToEmbed embedInfo) {
-        Message embedMessage; //TODO
+        Message embedMessage = jda.getGuildById("333825924942397442").getTextChannelById("333825924942397442").getMessageById("481601948387115019").complete();
         EmbedBuilder newEmbed = new EmbedBuilder();
         List<infoField> embedArray = new ArrayList<>(embedInfo.allInfo);
         for (infoField info: embedArray)
         {
-            System.out.println(info);
             MessageEmbed.Field newField = new MessageEmbed.Field(info.fieldName, info.data, true);
             newEmbed.addField(newField);
         }
-
+        embedMessage.editMessage(newEmbed.build()).complete();
     }
 }
