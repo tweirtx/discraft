@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageEmbed;
+import java.time.Instant;
+import java.time.temporal.*;
 
 import java.io.*;
 import java.util.*;
@@ -13,8 +15,7 @@ import java.util.*;
 import javax.security.auth.login.LoginException;
 
 public class Discord {
-    private static JDA jda;
-    private InfoToEmbed embedInfo;
+    public static JDA jda;
 
     private static void generateConfig() {
         try {
@@ -66,9 +67,10 @@ public class Discord {
         List<infoField> embedArray = new ArrayList<>(embedInfo.allInfo);
         for (infoField info: embedArray)
         {
-            MessageEmbed.Field newField = new MessageEmbed.Field(info.fieldName, info.data, true);
+            MessageEmbed.Field newField = new MessageEmbed.Field(info.fieldName, info.data, false);
             newEmbed.addField(newField);
         }
+        newEmbed.setTimestamp(Instant.now());
         embedMessage.editMessage(newEmbed.build()).complete();
     }
 }

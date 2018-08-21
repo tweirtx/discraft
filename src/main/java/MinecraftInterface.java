@@ -20,11 +20,11 @@ public class MinecraftInterface {
 
         //Up/down message
         embedInfo.upDownMessage.fieldName = "Is the server online?";
-        embedInfo.upDownMessage.data = "See the bot status to determine whether or not the server is online";
+        embedInfo.upDownMessage.data = "See the bot status to determine whether or not the server is online"; //Done
 
-        //Last updated timestamps
-        embedInfo.lastUpdated.fieldName = "Embed last updated";
-        embedInfo.lastUpdated.data = "Last updated at time";
+        //Formatting for last updated
+        embedInfo.lastUpdated.fieldName = "Last updated";
+        embedInfo.lastUpdated.data = "see timestamp below";
 
         //Actually update the message
         Discord.update(embedInfo);
