@@ -7,7 +7,6 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 import java.time.Instant;
-import java.time.temporal.*;
 
 import java.io.*;
 import java.util.*;
@@ -16,6 +15,7 @@ import javax.security.auth.login.LoginException;
 
 public class Discord {
     public static JDA jda;
+    public static Config config;
 
     private static void generateConfig() {
         try {

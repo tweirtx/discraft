@@ -4,14 +4,14 @@ import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.EventListener;
 
+import java.io.IOException;
+
 
 public class Listener implements EventListener {
-    @Override
-    public void onEvent(Event event)
+    public void eventHandler(Event event) throws IOException
     {
         if (event instanceof ReadyEvent) {
             System.out.println("Discord OK!");
-            // MinecraftInterface.updateEmbed();
         }
         if (event instanceof MessageReceivedEvent) {
             if (((MessageReceivedEvent) event).getMessage().getContentStripped().equals("discrafthere"))
@@ -22,6 +22,14 @@ public class Listener implements EventListener {
             if (((MessageReceivedEvent) event).getMessage().getContentStripped().equals("discraftupdate")) {
                 MinecraftInterface.updateEmbed();
             }
+        }
+    }
+    public void onEvent(Event event) {
+        try {
+            eventHandler(event);
+        }
+        catch (Exception e) {
+            System.out.println("IOException");
         }
     }
 }
